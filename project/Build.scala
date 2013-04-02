@@ -13,6 +13,8 @@ object ApplicationBuild extends Build {
     javaJdbc,
     javaEbean,
     "com.google.inject" % "guice" % "3.0",
+    "com.google.inject.extensions" % "guice-multibindings" % "3.0",
+    "util" % "util_2.10" % "1.0-SNAPSHOT",
     "boatdemo" % "boatdemo_2.10" % "1.3-SNAPSHOT" ,
     "persondemo" % "persondemo_2.10" % "1.1-SNAPSHOT" 
   )

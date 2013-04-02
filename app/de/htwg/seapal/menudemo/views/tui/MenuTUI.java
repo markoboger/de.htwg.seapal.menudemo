@@ -2,27 +2,22 @@ package de.htwg.seapal.menudemo.views.tui;
 
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
 
 import com.google.inject.Inject;
 
 import de.htwg.util.observer.Event;
 import de.htwg.util.observer.IObserver;
-import de.htwg.util.plugin.IPluginManager;
 import de.htwg.util.plugin.Plugin;
 
 public class MenuTUI implements IObserver {
 
-	
-	private IPluginManager pluginManager;
+	Set<Plugin> plugins;
 	Scanner scanner = new Scanner(System.in);
 
-	public MenuTUI(IPluginManager pluginManager) {
-		this.pluginManager = pluginManager;
-//		Iterator<Plugin> itr = pluginManager.getPlugins().iterator();
-//		while (itr.hasNext()) {
-//			Plugin plugin = itr.next();
-//			plugin.addObserver(this);
-//		}
+	@Inject
+	public MenuTUI(Set<Plugin> plugins) {
+		this.plugins = plugins;
 	}
 
 	public void update(Event e) {
@@ -34,10 +29,10 @@ public class MenuTUI implements IObserver {
 		if (line.equalsIgnoreCase("q")) {
 			continu = false;
 		}
-		Iterator<Plugin> itr = pluginManager.getPlugins().iterator();
+		Iterator<Plugin> itr = plugins.iterator();
 		while (itr.hasNext()) {
 			Plugin plugin = itr.next();
-			if (line.equalsIgnoreCase(plugin.getMenuKey())) {
+			if (line.toLowerCase().charAt(0) == plugin.getMenuKey()) {
 				plugin.printTUI();
 				plugin.processInputLine(scanner.next());
 			}
@@ -46,12 +41,14 @@ public class MenuTUI implements IObserver {
 	}
 
 	public void printTUI() {
-		System.out.println("MenuDemo: q - Quit");
+		System.out.println("MenuDemo: ");
+		System.out.println("q - Quit");
 
-		Iterator<Plugin> itr = pluginManager.getPlugins().iterator();
+		Iterator<Plugin> itr = plugins.iterator();
 		while (itr.hasNext()) {
 			Plugin plugin = itr.next();
-			System.out.print(plugin.getMenuEntry());
+			System.out.print(plugin.getMenuKey() + " - ");
+			System.out.println(plugin.getMenuEntry());
 		}
 
 	}

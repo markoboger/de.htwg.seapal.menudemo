@@ -5,11 +5,7 @@ import java.util.Scanner;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.htwg.seapal.boatdemo.controllers.IBoatController;
 import de.htwg.seapal.menudemo.views.tui.MenuTUI;
-import de.htwg.util.plugin.IActivator;
-import de.htwg.util.plugin.IPluginManager;
-import de.htwg.util.plugin.PluginManager;
 
 
 public class MenuDemo {
@@ -19,14 +15,10 @@ public class MenuDemo {
 	 */
 	public static void main(String[] args) {
 		// Set up Google Guice Dependency Injector
-		Injector injector = Guice.createInjector(new MenuDemoMockModule());
+		Injector injector = Guice.createInjector(new MenuDemoModule(), new PersonDemoMockModule(), new BoatDemoMockModule());
 		
 		// Build up the application, resolving dependencies automatically by Guice
-		IActivator boatActivator = injector.getInstance(IActivator.class);
-		
-		IPluginManager pluginManager = injector.getInstance(IPluginManager.class);
-		
-		MenuTUI tui = new MenuTUI(pluginManager);
+		MenuTUI tui = injector.getInstance( MenuTUI.class);
 
 		tui.printTUI();
 		// continue to read user input on the tui until the user decides to quit
