@@ -1,11 +1,13 @@
-package app;
+package de.htwg.seapal.menudemo.app;
 
 import java.util.Scanner;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import de.htwg.seapal.boatdemo.app.BoatDemoMockModule;
 import de.htwg.seapal.menudemo.views.tui.MenuTUI;
+import de.htwg.seapal.persondemo.app.PersonDemoMockModule;
 
 
 public class MenuDemo {

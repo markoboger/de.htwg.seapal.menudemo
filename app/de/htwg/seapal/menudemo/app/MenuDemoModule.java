@@ -1,4 +1,4 @@
-package app;
+package de.htwg.seapal.menudemo.app;
 
 
 import com.google.inject.AbstractModule;
