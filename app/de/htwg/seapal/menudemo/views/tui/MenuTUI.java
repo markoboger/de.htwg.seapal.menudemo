@@ -3,18 +3,22 @@ package de.htwg.seapal.menudemo.views.tui;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import com.google.inject.Inject;
+
 import de.htwg.util.observer.Event;
 import de.htwg.util.observer.IObserver;
+import de.htwg.util.plugin.IPluginManager;
 import de.htwg.util.plugin.Plugin;
-import de.htwg.util.plugin.PluginManager;
 
 public class MenuTUI implements IObserver {
 
 	
-	private PluginManager pluginManager;
+	private IPluginManager pluginManager;
 	Scanner scanner = new Scanner(System.in);
 
-	public MenuTUI(PluginManager pluginManager) {
+	@Inject
+	public MenuTUI(IPluginManager pluginManager) {
+		this.pluginManager = pluginManager;
 		Iterator<Plugin> itr = pluginManager.getPlugins().iterator();
 		while (itr.hasNext()) {
 			Plugin plugin = itr.next();

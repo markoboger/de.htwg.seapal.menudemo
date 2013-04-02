@@ -11,6 +11,6 @@ public interface Plugin extends IObservable{
 	
 	public void printTUI();
 	
-	public void processInputLine(String line);
+	public boolean processInputLine(String line);
 
 }

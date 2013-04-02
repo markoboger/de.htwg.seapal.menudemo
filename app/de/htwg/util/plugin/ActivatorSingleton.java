@@ -2,7 +2,7 @@ package de.htwg.util.plugin;
 
 public abstract class ActivatorSingleton {
 	
-	private PluginManager pluginManager;
+	protected IPluginManager pluginManager;
 	protected Plugin plugin;
 	
 
