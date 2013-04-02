@@ -36,7 +36,7 @@ public class ApplicationTest {
     
     @Test
     public void renderTemplate() {
-        Content html = de.htwg.seapal.boatdemo.views.html.index.render("Your new application is ready.");
+        Content html = de.htwg.seapal.menudemo.views.html.index.render("Your new application is ready.");
         assertThat(contentType(html)).isEqualTo("text/html");
         assertThat(contentAsString(html)).contains("Your new application is ready.");
     }

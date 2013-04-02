@@ -8,8 +8,9 @@ import de.htwg.seapal.boatdemo.models.IBoat;
 
 import de.htwg.seapal.persondemo.controllers.IPersonController;
 import de.htwg.seapal.persondemo.models.IPerson;
-import de.htwg.util.plugin.ActivatorSingleton;
+import de.htwg.util.plugin.IActivator;
 import de.htwg.util.plugin.IPluginManager;
+import de.htwg.util.plugin.Plugin;
 
 public class MenuDemoMockModule extends AbstractModule {
 
@@ -22,7 +23,9 @@ public class MenuDemoMockModule extends AbstractModule {
 		bind(IPerson.class).to(de.htwg.seapal.persondemo.models.mock.Person.class);
 		
 		bind(IPluginManager.class).to(de.htwg.util.plugin.PluginManager.class);
-		bind(ActivatorSingleton.class).to(app.BoatActivator.class);
+		bind(Plugin.class).to(de.htwg.seapal.boatdemo.views.tui.BoatTUI.class);
+		bind(IActivator.class).to(app.BoatActivator.class);
+		
 		
 	}
 

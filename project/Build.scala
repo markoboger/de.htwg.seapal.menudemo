@@ -13,8 +13,8 @@ object ApplicationBuild extends Build {
     javaJdbc,
     javaEbean,
     "com.google.inject" % "guice" % "3.0",
-    "boatdemo" % "boatdemo_2.10" % "1.3-SNAPSHOT" withSources(),
-    "persondemo" % "persondemo_2.10" % "1.1-SNAPSHOT" withSources()
+    "boatdemo" % "boatdemo_2.10" % "1.3-SNAPSHOT" ,
+    "persondemo" % "persondemo_2.10" % "1.1-SNAPSHOT" 
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

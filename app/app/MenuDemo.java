@@ -7,7 +7,7 @@ import com.google.inject.Injector;
 
 import de.htwg.seapal.boatdemo.controllers.IBoatController;
 import de.htwg.seapal.menudemo.views.tui.MenuTUI;
-import de.htwg.util.plugin.ActivatorSingleton;
+import de.htwg.util.plugin.IActivator;
 import de.htwg.util.plugin.IPluginManager;
 import de.htwg.util.plugin.PluginManager;
 
@@ -22,9 +22,11 @@ public class MenuDemo {
 		Injector injector = Guice.createInjector(new MenuDemoMockModule());
 		
 		// Build up the application, resolving dependencies automatically by Guice
-		ActivatorSingleton boatActivator = injector.getInstance(ActivatorSingleton.class);
-
-		MenuTUI tui = injector.getInstance(MenuTUI.class);
+		IActivator boatActivator = injector.getInstance(IActivator.class);
+		
+		IPluginManager pluginManager = injector.getInstance(IPluginManager.class);
+		
+		MenuTUI tui = new MenuTUI(pluginManager);
 
 		tui.printTUI();
 		// continue to read user input on the tui until the user decides to quit

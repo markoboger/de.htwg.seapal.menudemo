@@ -16,14 +16,13 @@ public class MenuTUI implements IObserver {
 	private IPluginManager pluginManager;
 	Scanner scanner = new Scanner(System.in);
 
-	@Inject
 	public MenuTUI(IPluginManager pluginManager) {
 		this.pluginManager = pluginManager;
-		Iterator<Plugin> itr = pluginManager.getPlugins().iterator();
-		while (itr.hasNext()) {
-			Plugin plugin = itr.next();
-			plugin.addObserver(this);
-		}
+//		Iterator<Plugin> itr = pluginManager.getPlugins().iterator();
+//		while (itr.hasNext()) {
+//			Plugin plugin = itr.next();
+//			plugin.addObserver(this);
+//		}
 	}
 
 	public void update(Event e) {
