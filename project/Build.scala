@@ -14,7 +14,7 @@ object ApplicationBuild extends Build {
     javaEbean,
     "com.google.inject" % "guice" % "3.0",
     "com.google.inject.extensions" % "guice-multibindings" % "3.0",
-    "util" % "util_2.10" % "1.0-SNAPSHOT",
+    "de.htwg" % "util" % "1.0-SNAPSHOT",
     "de.htwg.seapal" % "boatdemo" % "1.3-SNAPSHOT" ,
     "de.htwg.seapal" % "persondemo" % "1.1-SNAPSHOT" 
   )
