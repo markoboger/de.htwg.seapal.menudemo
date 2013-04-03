@@ -15,17 +15,32 @@ object ApplicationBuild extends Build {
     "com.google.inject" % "guice" % "3.0",
     "com.google.inject.extensions" % "guice-multibindings" % "3.0",
     "util" % "util_2.10" % "1.0-SNAPSHOT",
-    "boatdemo" % "boatdemo_2.10" % "1.3-SNAPSHOT" ,
-    "persondemo" % "persondemo_2.10" % "1.1-SNAPSHOT" 
+    "de.htwg.seapal" % "boatdemo" % "1.3-SNAPSHOT" ,
+    "de.htwg.seapal" % "persondemo" % "1.1-SNAPSHOT" 
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     // Add your own project settings here  
       
-    resolvers += "HTWG Repo Menu" at "http://lenny2.in.htwg-konstanz.de:8081/artifactory/libs-snapshot-local",
+    organization := "de.htwg.seapal", // group id...
+    crossPaths := false, // disable using the Scala version in output paths and artifacts
+   
+    resolvers += "HTWG Resolvers" at "http://lenny2.in.htwg-konstanz.de:8081/artifactory/libs-snapshot-local",
 
-    publishTo := Some("HTWG Repo Menu" at "http://lenny2.in.htwg-konstanz.de:8081/artifactory/libs-snapshot-local;build.timestamp=" + new java.util.Date().getTime) 
-  
+    publishTo := Some("HTWG PublishTo" at "http://lenny2.in.htwg-konstanz.de:8081/artifactory/libs-snapshot-local;build.timestamp=" + new java.util.Date().getTime),
+    
+    // setup entry points for sonar code analyzer
+  	pomExtra :=
+	  <build>
+	    <sourceDirectory>app</sourceDirectory>
+	    <testSourceDirectory>test</testSourceDirectory>
+	    <resources>
+	      <resource>
+	        <directory>app</directory>
+	      </resource>
+	    </resources>
+	  </build>
+    
   )
 
 }
